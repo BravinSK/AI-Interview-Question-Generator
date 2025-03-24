@@ -5,7 +5,7 @@ import json
 
 app = Flask(__name__, static_folder="../frontend", static_url_path="")
 
-# Set your Bard API key
+# Set Bard API key
 BARD_API_KEY = "g.a000uQjr2geasosZbndACDSmPdMWNWliPGApTFrARHHsaKq67kZ9srRC1fEE-f65Go4WOnZuTAACgYKAYcSARISFQHGX2MipvZ33vPn9Vo8o809cyr4pBoVAUF8yKpCJN2XIimnHgdzUTN4O7C20076"
 bard = Bard(token=BARD_API_KEY)
 
@@ -17,7 +17,7 @@ def home():
 def generate():
     data = request.json
     topic = data.get("topic", "General")
-    num_questions = data.get("num_questions", 10)  # Default to 10 questions
+    num_questions = data.get("num_questions", 10)  
 
     # Generate questions using Bard API
     prompt = f"Generate {num_questions} short interview questions and answers about {topic} in point form."
@@ -40,7 +40,7 @@ def generate():
                 question = qa.split("Question:")[1].split("Answer:")[0].strip()
                 answer = qa.split("Answer:")[1].strip()
 
-                # Remove unwanted '*' symbols
+                
                 question = question.replace("*", "").strip()
                 answer = answer.replace("*", "").strip()
 

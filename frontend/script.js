@@ -13,7 +13,7 @@ generateBtn.addEventListener("click", async () => {
         return;
     }
 
-    // Clear the questions list
+    // Clear the questions list and show loading state
     questionsList.innerHTML = "<div class='question-card'>Loading...</div>";
 
     try {
@@ -30,17 +30,19 @@ generateBtn.addEventListener("click", async () => {
         }
 
         const data = await response.json();
+        console.log("Backend Response:", data); // Debugging line
         displayQuestions(data.questions);
     } catch (error) {
-        alert(error.message);
-        questionsList.innerHTML = "";
+        console.error("Error fetching questions:", error); // Debugging line
+        alert("An error occurred while generating questions. Please try again.");
+        questionsList.innerHTML = "<div class='question-card'>Failed to load questions.</div>";
     }
 });
 
 // Function to display questions in the UI
 function displayQuestions(questions) {
     questionsList.innerHTML = "";
-    if (questions.length === 0) {
+    if (!questions || !Array.isArray(questions) || questions.length === 0) {
         questionsList.innerHTML = "<div class='question-card'>No questions available.</div>";
         return;
     }
@@ -48,11 +50,23 @@ function displayQuestions(questions) {
     questions.forEach((q) => {
         const card = document.createElement("div");
         card.className = "question-card";
-        card.innerHTML = `
-            <strong>Q:</strong> ${q.context} 
-            <br>
-            <strong>A:</strong> ${q.answer}
-        `;
+
+        // Create a separate box for the question
+        const questionBox = document.createElement("div");
+        questionBox.className = "question-box";
+        questionBox.innerHTML = `<strong>Q:</strong> ${q.context}`;
+
+        // Create a separate box for the answer
+        const answerBox = document.createElement("div");
+        answerBox.className = "answer-box";
+        answerBox.innerHTML = `<strong>A:</strong> ${q.answer}`;
+
+        // Append the question and answer boxes to the card
+        card.appendChild(questionBox);
+        card.appendChild(answerBox);
+
+        // Append the card to the questions list
         questionsList.appendChild(card);
     });
 }
+

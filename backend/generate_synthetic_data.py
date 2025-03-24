@@ -1,7 +1,7 @@
 from bardapi import Bard
 import json
 
-# Set your Bard API key
+# Set Bard API key
 BARD_API_KEY = "g.a000uQjr2geasosZbndACDSmPdMWNWliPGApTFrARHHsaKq67kZ9srRC1fEE-f65Go4WOnZuTAACgYKAYcSARISFQHGX2MipvZ33vPn9Vo8o809cyr4pBoVAUF8yKpCJN2XIimnHgdzUTN4O7C20076"
 
 # Initialize the Bard API
