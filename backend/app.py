@@ -23,7 +23,7 @@ def generate():
     prompt = f"Generate {num_questions} short interview questions and answers about {topic} in point form."
     try:
         response = bard.get_answer(prompt)
-        print("Raw API Response:", response)  # Debugging line
+        print("Raw API Response:", response)  
         if response and "content" in response:
             qa_pairs = response["content"].strip().split("\n\n")  # Split into individual Q&A pairs
             print("QA Pairs:", qa_pairs)  # Debugging line

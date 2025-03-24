@@ -28,7 +28,7 @@ def generate_interview_qa(topic, num_questions=10):
 if __name__ == "__main__":
     topic = "Python programming"
     qa_pairs = generate_interview_qa(topic, num_questions=15)
-    print("QA Pairs:", qa_pairs)  # Debugging line
+    print("QA Pairs:", qa_pairs) 
     
     # Format the data
     formatted_data = []
