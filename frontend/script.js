@@ -13,7 +13,7 @@ generateBtn.addEventListener("click", async () => {
         return;
     }
 
-    // Clear the questions list and show loading state
+    // Clear the questions list and show the loading state
     questionsList.innerHTML = "<div class='question-card'>Loading...</div>";
 
     try {
